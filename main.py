@@ -32,9 +32,19 @@ def syracuse_l(n):
         list: la suite de Syracuse de source n
     """
 
-    # votre code ici 
+    # votre code ici
     l = [ ]
+    l.append(n)
+    while n != 1:
+        if n%2 == 0:
+            n /= 2
+            l.append(n)
+        else:
+            n = (n*3)+1
+            l.append(n)
     return l
+
+
 
 def temps_de_vol(l):
     """Retourne le temps de vol d'une suite de Syracuse
@@ -45,11 +55,13 @@ def temps_de_vol(l):
     Returns:
         int: le temps de vol
     """
-    
-    # votre code ici
-
+    #votre code ici
     n = 0
+    for i in range(len(l)):
+        if l[i] == 1:
+            n = i+1
     return n
+
 
 def temps_de_vol_en_altitude(l):
     """Retourne le temps de vol en altitude d'une suite de Syracuse
@@ -60,11 +72,15 @@ def temps_de_vol_en_altitude(l):
     Returns:
         int: le temps de vol en altitude
     """
-
     # votre code ici
-
     n = 0
+    lpremier = l[n]
+    for i in range(len(l)):
+        if lpremier > l[i]:
+            n = i
+            break
     return n
+
 
 
 def altitude_maximale(l):
@@ -76,18 +92,18 @@ def altitude_maximale(l):
     Returns:
         int: l'altitude maximale
     """
-    
     # votre code ici
-    
-    n = 0
-    return n
-
+    m = l[0]
+    for element in l:
+        m = max(element,m)
+    return m
 
 #### Fonction principale
 
 
 def main():
-
+    """ appelle les différentes fonctions secondaires
+    """
     # vos appels à la fonction secondaire ici
     lsyr = syracuse_l(15)
     syr_plot(lsyr)
